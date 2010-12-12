@@ -6,3 +6,7 @@ couchapp -c $DB -d logs.js -s
 Point a vhost config at /database/_design/logs/_rewrite
 
 Now view logs.
+
+
+To get logs INTO the couchdb, I use
+https://github.com/isaacs/ircretary
