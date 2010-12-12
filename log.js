@@ -35,7 +35,7 @@ ddoc.views.dates =
       if (!doc.when) return
       var w = new Date(doc.when)
       w = w.getUTCFullYear()
-        + "-" + w.getUTCMonth()
+        + "-" + (w.getUTCMonth()+1)
         + "-" + w.getUTCDate()
       var i = w + (doc.where.replace(/#/g, '')).toLowerCase()
       emit(i, [{ date:w, room : doc.where }])
