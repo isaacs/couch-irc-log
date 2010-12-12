@@ -24,7 +24,8 @@ ddoc.lists.listRooms = function (doc, req) {
   start({ headers: {"content-type":"text/html"}})
   send("<html><ul>")
   while (row = getRow()) {
-    send("<li>"+row.value+"</li>")
+    send("<li><a href='/" + row.value.replace(/#/g, '').toLowerCase()
+        + "'>"+row.value+"</a></li>")
   }
   send("</ul>")
 }
@@ -58,6 +59,7 @@ ddoc.views.dates =
   }
 ddoc.lists.listDates = function (head, req) {
   start({headers:{"content-type":"text/html"}})
+  if (req.query.room) send("<h1>"+req.query.room+"</h1>")
   var dates = getRow().value
   if (!dates) {
     send("nada")
@@ -69,7 +71,8 @@ ddoc.lists.listDates = function (head, req) {
       })
     : dates
   ).forEach(function (d) {
-    send("<li>"+d.room + " "+d.date+"</li>")
+    send("<li><a href='/"+d.room.replace(/#/g, '').toLowerCase() + "/"+
+         d.date+"/'>"+(req.query.room ? "" : d.room) + " "+d.date+"</a></li>")
   })
 }
 
